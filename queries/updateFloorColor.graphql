@@ -1,0 +1,9 @@
+mutation UpdateFloorColor($color:String, $id:uuid!) {
+  update_floor_by_pk(pk_columns:{
+    id: $id
+  }, _set:{
+    color: $color
+  }) {
+    color
+  }
+}

@@ -1,0 +1,19 @@
+query GetBuilding {
+  building {
+    slug
+    id
+    floors(order_by: {
+      position:desc
+    }) {
+      id
+      color,
+      rooms {
+        id
+        room_lights {
+          id
+          on
+        }
+      }
+    }
+  }
+}
