@@ -4,12 +4,28 @@ import { Room_Light } from '../generated/graphql';
 
 const url = 'wss://hasura-pngv.onrender.com/v1/graphql';
 
+function dateToLocalISO(date) {
+  const off = date.getTimezoneOffset();
+  const absoff = Math.abs(off);
+  return (
+    new Date(date.getTime() - off * 60 * 1000).toISOString().substr(0, 23) +
+    (off > 0 ? '-' : '+') +
+    Math.floor(absoff / 60)
+      .toFixed(0)
+      .padStart(2, '0') +
+    ':' +
+    (absoff % 60).toString().padStart(2, '0')
+  );
+}
+
 export const useLightSwitchStream = () => {
   const queryClient = useQueryClient();
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [isSubscribingSuccess, setIsSubscribingSuccess] = useState(false);
 
   useEffect(() => {
+    const nowStamp = dateToLocalISO(new Date());
+
     const ws = new WebSocket(url, 'graphql-ws');
     setIsSubscribing(true);
 
@@ -25,7 +41,7 @@ export const useLightSwitchStream = () => {
             operationName: 'LightSwitchStream',
             query: `subscription LightSwitchStream {
               room_light_stream(batch_size: 100, cursor: {
-                updated_at: "2021-12-09T06:48:16Z",
+                updated_at: "${nowStamp}",
                 ordering: ASC
               }){
                 id
