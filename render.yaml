@@ -1,0 +1,10 @@
+services:
+- type: web
+  name: next-js
+  env: node
+  plan: starter
+  buildCommand: yarn; yarn build
+  startCommand: yarn start
+  envVars:
+  - key: NODE_ENV
+    value: production
