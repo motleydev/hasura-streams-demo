@@ -23,7 +23,7 @@ export default function Home() {
 
       <main className="h-screen">
         {isSuccess && (
-          <div className="flex space-around justify-center mt-4 mb-8">
+          <div className="flex space-around justify-center mt-4">
             {data.building &&
               data.building.map((building: Building, index: number) => (
                 <BuildingComp key={index} building={building} />
