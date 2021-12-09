@@ -1,0 +1,12 @@
+mutation ResetRoom {
+  update_room_light(where: { on: { _eq: true } }, _set: { on: false }) {
+    returning {
+      id
+    }
+  }
+  update_floor(where: { color: { _neq: "#000" } }, _set: { color: "#000" }) {
+    returning {
+      id
+    }
+  }
+}

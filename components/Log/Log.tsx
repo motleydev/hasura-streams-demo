@@ -1,11 +1,11 @@
-import React from 'react';
-import { useQuery } from 'react-query';
-import { useLightSwitchStream } from '../../hooks/useLightSwitchStream';
+import React from "react";
+import { useQuery } from "react-query";
+import { useLightSwitchStream } from "../../hooks/useLightSwitchStream";
 
 export interface LogProps {}
 
 export const Log: React.VFC<LogProps> = () => {
-  const { data } = useQuery('LightLog', () => [], {
+  const { data } = useQuery("LightLog", () => [], {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -13,7 +13,7 @@ export const Log: React.VFC<LogProps> = () => {
   });
   const { isSubscribing } = useLightSwitchStream();
   return (
-    <div className="w-72 fixed top-px right-px">
+    <div className="w-72 lg:fixed lg:top-px lg:right-px">
       {data && (
         <div
           className="overflow-y-scroll h-72 b
@@ -36,7 +36,7 @@ export const Log: React.VFC<LogProps> = () => {
                 </p>
                 <p>
                   <strong>Status:</strong>
-                  {event.on ? 'On' : 'Off'}
+                  {event.on ? "On" : "Off"}
                 </p>
               </div>
             );

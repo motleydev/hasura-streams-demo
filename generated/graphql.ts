@@ -872,6 +872,11 @@ export type GetBuildingQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetBuildingQuery = { __typename?: 'query_root', building: Array<{ __typename?: 'building', slug: string, id: any, floors: Array<{ __typename?: 'floor', id: any, color?: string | null | undefined, rooms: Array<{ __typename?: 'room', id: any, room_lights: Array<{ __typename?: 'room_light', id: any, on: boolean }> }> }> }> };
 
+export type ResetRoomMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ResetRoomMutation = { __typename?: 'mutation_root', update_room_light?: { __typename?: 'room_light_mutation_response', returning: Array<{ __typename?: 'room_light', id: any }> } | null | undefined, update_floor?: { __typename?: 'floor_mutation_response', returning: Array<{ __typename?: 'floor', id: any }> } | null | undefined };
+
 export type ToggleLightSwitchMutationVariables = Exact<{
   id: Scalars['uuid'];
   status?: InputMaybe<Scalars['Boolean']>;
@@ -918,6 +923,29 @@ export const useGetBuildingQuery = <
     useQuery<GetBuildingQuery, TError, TData>(
       variables === undefined ? ['GetBuilding'] : ['GetBuilding', variables],
       fetcher<GetBuildingQuery, GetBuildingQueryVariables>(GetBuildingDocument, variables),
+      options
+    );
+export const ResetRoomDocument = `
+    mutation ResetRoom {
+  update_room_light(where: {on: {_eq: true}}, _set: {on: false}) {
+    returning {
+      id
+    }
+  }
+  update_floor(where: {color: {_neq: "#000"}}, _set: {color: "#000"}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+export const useResetRoomMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<ResetRoomMutation, TError, ResetRoomMutationVariables, TContext>) =>
+    useMutation<ResetRoomMutation, TError, ResetRoomMutationVariables, TContext>(
+      'ResetRoom',
+      (variables?: ResetRoomMutationVariables) => fetcher<ResetRoomMutation, ResetRoomMutationVariables>(ResetRoomDocument, variables)(),
       options
     );
 export const ToggleLightSwitchDocument = `

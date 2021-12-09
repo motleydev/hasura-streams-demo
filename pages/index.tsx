@@ -1,8 +1,8 @@
-import Head from 'next/head';
-import { useGetBuildingQuery, Building } from '../generated/graphql';
-import { BuildingComp } from '../components/Building';
-import { useBuildingSubscription } from '../hooks/useBuildingSubscription';
-import { Log } from '../components/Log';
+import Head from "next/head";
+import { useGetBuildingQuery, Building } from "../generated/graphql";
+import { BuildingComp } from "../components/Building";
+import { useBuildingSubscription } from "../hooks/useBuildingSubscription";
+import { Log } from "../components/Log";
 
 export default function Home() {
   const { data, isLoading, isSuccess } = useGetBuildingQuery(
@@ -18,12 +18,12 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Secret Santa App</title>
+        <title>API Days Paris 2021</title>
       </Head>
 
       <main className="h-screen">
         {isSuccess && (
-          <div className="flex space-around justify-center mt-4">
+          <div className="flex space-around justify-center mt-4 mb-8">
             {data.building &&
               data.building.map((building: Building, index: number) => (
                 <BuildingComp key={index} building={building} />
