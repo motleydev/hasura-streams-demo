@@ -24,8 +24,9 @@ export const useLightSwitchStream = () => {
             extensions: {},
             operationName: 'LightSwitchStream',
             query: `subscription LightSwitchStream {
-              room_light_stream(batch_size: 10, cursor: {
-                updated_at: yesterday
+              room_light_stream(batch_size: 100, cursor: {
+                updated_at: "2021-12-09T06:48:16Z",
+                ordering: ASC
               }){
                 id
                 updated_at

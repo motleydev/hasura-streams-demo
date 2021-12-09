@@ -15,7 +15,10 @@ export const Log: React.VFC<LogProps> = () => {
   return (
     <div className="w-72 fixed top-px right-px">
       {data && (
-        <div className="overflow-y-scroll h-72 border border-gray-200 rounded-lg">
+        <div
+          className="overflow-y-scroll h-72 b
+        order border-gray-200 rounded-lg"
+        >
           {data.map((event, index) => {
             return (
               <div className="py-4 border-b border-gray-200" key={index}>
@@ -26,6 +29,10 @@ export const Log: React.VFC<LogProps> = () => {
                 <p>
                   <strong>At:</strong>
                   {new Date(event.updated_at).toLocaleTimeString()}
+                </p>
+                <p>
+                  <strong>Raw:</strong>
+                  {event.updated_at}
                 </p>
                 <p>
                   <strong>Status:</strong>
