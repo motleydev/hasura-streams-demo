@@ -2,7 +2,7 @@ services:
 - type: web
   name: next-js
   env: node
-  plan: starter
+  plan: free
   buildCommand: yarn --production=false; yarn build
   startCommand: yarn start
   envVars:
