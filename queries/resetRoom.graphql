@@ -1,5 +1,5 @@
 mutation ResetRoom {
-  update_room_light(where: { on: { _eq: true } }, _set: { on: false }) {
+  update_light(where: { on: { _eq: true } }, _set: { on: false }) {
     returning {
       id
     }

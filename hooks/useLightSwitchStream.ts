@@ -42,7 +42,7 @@ export const useLightSwitchStream = () => {
               extensions: {},
               operationName: "LightSwitchStream",
               query: `subscription LightSwitchStream {
-              room_light_stream(batch_size: 100, cursor: {
+              light_stream(batch_size: 100, cursor: {
                 updated_at: "${nowStamp}",
                 ordering: ASC
               }){

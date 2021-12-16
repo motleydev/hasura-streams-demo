@@ -2,14 +2,12 @@ query GetBuilding {
   building {
     slug
     id
-    floors(order_by: {
-      position:desc
-    }) {
+    floors(order_by: { position: desc }) {
       id
-      color,
+      color
       rooms {
         id
-        room_lights {
+        lights {
           id
           on
         }

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useQueryClient } from 'react-query';
+import { useEffect, useState } from "react";
+import { useQueryClient } from "react-query";
 
-const url = 'wss://hasura-pngv.onrender.com/v1/graphql';
+const url = "wss://hasura-pngv.onrender.com/v1/graphql";
 
 export const useBuildingSubscription = () => {
   const queryClient = useQueryClient();
@@ -9,19 +9,19 @@ export const useBuildingSubscription = () => {
   const [isSubscribingSuccess, setIsSubscribingSuccess] = useState(false);
 
   useEffect(() => {
-    const ws = new WebSocket(url, 'graphql-ws');
+    const ws = new WebSocket(url, "graphql-ws");
     setIsSubscribing(true);
 
     ws.onopen = () => {
-      ws.send(JSON.stringify({ type: 'connection_init', payload: {} }));
+      ws.send(JSON.stringify({ type: "connection_init", payload: {} }));
       ws.send(
         JSON.stringify({
-          id: '1',
-          type: 'start',
+          id: "1",
+          type: "start",
           payload: {
             variables: {},
             extensions: {},
-            operationName: 'GetBuildingSubscription',
+            operationName: "GetBuildingSubscription",
             query: `subscription GetBuildingSubscription {
                 building {
                   slug
@@ -33,7 +33,7 @@ export const useBuildingSubscription = () => {
                     color,
                     rooms {
                       id
-                      room_lights {
+                      lights {
                         id
                         on
                       }
@@ -49,17 +49,17 @@ export const useBuildingSubscription = () => {
 
     ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
-      if (msg.type === 'data') {
+      if (msg.type === "data") {
         setIsSubscribingSuccess(true);
         setIsSubscribing(false);
         const data = msg.payload.data;
 
-        queryClient.setQueriesData(['GetBuilding', {}], data);
+        queryClient.setQueriesData(["GetBuilding", {}], data);
       }
     };
 
     return () => {
-      ws.send(JSON.stringify({ id: '1', type: 'stop' }));
+      ws.send(JSON.stringify({ id: "1", type: "stop" }));
       ws.close();
     };
   }, [queryClient]);

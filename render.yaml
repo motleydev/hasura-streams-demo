@@ -8,7 +8,7 @@ services:
   envVars:
   - key: GQL_SERVER
     fromService:
-      name: next-js
+      name: hasura
       type: web
       property: HASURA_GRAPHQL_ENDPOINT
   - key: NODE_ENV
