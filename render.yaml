@@ -5,12 +5,12 @@ services:
   plan: starter
   buildCommand: yarn --production=false; yarn build
   startCommand: yarn start
-  envVars:
-  - key: GQL_SERVER
-    fromService:
-      name: hasura
-      type: web
-      envVarKey: HASURA_GRAPHQL_ENDPOINT
+  # envVars:
+  # - key: GQL_SERVER
+  #   fromService:
+  #     name: hasura
+  #     type: web
+  #     envVarKey: HASURA_GRAPHQL_ENDPOINT
   - key: NODE_ENV
     value: production
 - type: web
