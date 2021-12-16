@@ -1,0 +1,30 @@
+table:
+  name: light
+  schema: public
+object_relationships:
+- name: room
+  using:
+    manual_configuration:
+      column_mapping:
+        room_id: id
+      insertion_order: null
+      remote_table:
+        name: room
+        schema: public
+select_permissions:
+- permission:
+    columns:
+    - on
+    - created_at
+    - updated_at
+    - id
+    - room_id
+    filter: {}
+  role: anonymous
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - on
+    filter: {}
+  role: anonymous

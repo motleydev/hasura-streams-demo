@@ -1,3 +1,3 @@
-FROM hasurabuild/graphql-engine:mono-pr-2948-5aca88f06.amd64
+FROM hasurabuild/graphql-engine:karthikeyanstreaming-subscriptions-v1-e898ebc8d.amd64
 
 CMD graphql-engine serve --server-port $PORT

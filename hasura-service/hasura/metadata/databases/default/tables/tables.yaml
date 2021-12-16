@@ -1,0 +1,4 @@
+- "!include public_building.yaml"
+- "!include public_floor.yaml"
+- "!include public_light.yaml"
+- "!include public_room.yaml"

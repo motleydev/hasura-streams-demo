@@ -1,0 +1,32 @@
+table:
+  name: room
+  schema: public
+object_relationships:
+- name: floor
+  using:
+    manual_configuration:
+      column_mapping:
+        floor_id: id
+      insertion_order: null
+      remote_table:
+        name: floor
+        schema: public
+array_relationships:
+- name: lights
+  using:
+    manual_configuration:
+      column_mapping:
+        id: room_id
+      insertion_order: null
+      remote_table:
+        name: light
+        schema: public
+select_permissions:
+- permission:
+    columns:
+    - created_at
+    - updated_at
+    - floor_id
+    - id
+    filter: {}
+  role: anonymous
