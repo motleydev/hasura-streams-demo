@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>API Days Paris 2021</title>
+        <title>Hasura Streaming subscription</title>
       </Head>
 
       <main className="h-screen">
