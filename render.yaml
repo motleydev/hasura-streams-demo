@@ -6,11 +6,8 @@ services:
   buildCommand: yarn --production=false; yarn build
   startCommand: yarn start
   envVars:
-  # - key: GQL_SERVER
-  #   fromService:
-  #     name: hasura
-  #     type: web
-  #     envVarKey: HASURA_GRAPHQL_ENDPOINT
+  - key: NEXT_PUBLIC_GRAPHQL_SERVER
+    sync: false
   - key: NODE_ENV
     value: production
 - type: web
@@ -20,6 +17,10 @@ services:
   autoDeploy: false
   healthCheckPath: /healthz
   envVars:
+  - key: HASURA_GRAPHQL_ADMIN_SECRET
+    generateValue: true
+  - key: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
+    value: anonymous
   - key: HASURA_GRAPHQL_DATABASE_URL
     fromDatabase:
       name: hasura
