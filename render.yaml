@@ -6,6 +6,11 @@ services:
   buildCommand: yarn --production=false; yarn build
   startCommand: yarn start
   envVars:
+  - key: GQL_SERVER
+    fromService:
+      name: next-js
+      type: web
+      property: HASURA_GRAPHQL_ENDPOINT
   - key: NODE_ENV
     value: production
 - type: web
