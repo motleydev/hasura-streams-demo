@@ -1,5 +1,5 @@
-import React from 'react';
-import { Room, useToggleLightSwitchMutation } from '../../generated/graphql';
+import React from "react";
+import { Room, useToggleLightSwitchMutation } from "../../generated/graphql";
 
 export interface RoomProps {
   room: Room;
@@ -12,8 +12,8 @@ export const RoomComp: React.VFC<RoomProps> = ({ room, floorColor }) => {
   const handleClick = (e) => {
     e.stopPropagation();
     mutate({
-      id: room.room_lights[0].id,
-      status: !room.room_lights[0].on,
+      id: room.lights[0].id,
+      status: !room.lights[0].on,
     });
   };
   return (
@@ -27,7 +27,7 @@ export const RoomComp: React.VFC<RoomProps> = ({ room, floorColor }) => {
         onClick={handleClick}
         className="bg-white w-8 h-8 rounded-sm  border border-white"
         style={{
-          background: room.room_lights[0].on ? 'white' : floorColor,
+          background: room.lights[0].on ? "white" : floorColor,
         }}
       />
     </div>

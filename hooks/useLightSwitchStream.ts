@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
-import { Room_Light } from "../generated/graphql";
+import { Light } from "../generated/graphql";
 
-const url = "wss://hasura-pngv.onrender.com/v1/graphql";
+const url = process.env.NEXT_PUBLIC_GRAPHQL_SERVER.replace("https", "wss");
 
 function dateToLocalISO(date) {
   const off = date.getTimezoneOffset();
@@ -71,15 +71,12 @@ export const useLightSwitchStream = () => {
         if (msg.type === "data") {
           setIsSubscribingSuccess(true);
           setIsSubscribing(false);
-          const data = msg.payload.data.room_light_stream as Array<Room_Light>;
+          const data = msg.payload.data.room_light_stream as Array<Light>;
 
-          queryClient.setQueriesData(
-            ["LightLog"],
-            (oldData: Array<Room_Light>) => {
-              console.log(oldData);
-              return [...data, ...oldData];
-            }
-          );
+          queryClient.setQueriesData(["LightLog"], (oldData: Array<Light>) => {
+            console.log(oldData);
+            return [...data, ...oldData];
+          });
         }
       };
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 
-const url = "wss://hasura-pngv.onrender.com/v1/graphql";
+const url = process.env.NEXT_PUBLIC_GRAPHQL_SERVER.replace("https", "wss");
 
 export const useBuildingSubscription = () => {
   const queryClient = useQueryClient();
