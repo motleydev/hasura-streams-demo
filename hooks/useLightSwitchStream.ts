@@ -71,7 +71,7 @@ export const useLightSwitchStream = () => {
         if (msg.type === "data") {
           setIsSubscribingSuccess(true);
           setIsSubscribing(false);
-          const data = msg.payload.data.room_light_stream as Array<Light>;
+          const data = msg.payload.data.light_stream as Array<Light>;
 
           queryClient.setQueriesData(["LightLog"], (oldData: Array<Light>) => {
             console.log(oldData);
