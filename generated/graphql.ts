@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions, useMutation, UseMutationOptions } from 'react-query';
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from 'react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -124,6 +124,20 @@ export type Building_Bool_Exp = {
   id?: InputMaybe<Uuid_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** input type for inserting data into table "building" */
+export type Building_Insert_Input = {
+  slug?: InputMaybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "building" */
+export type Building_Mutation_Response = {
+  __typename?: 'building_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Building>;
 };
 
 /** Ordering options when selecting data from "building". */
@@ -342,6 +356,10 @@ export type Floor_Variance_Order_By = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** insert data into the table: "building" */
+  insert_building?: Maybe<Building_Mutation_Response>;
+  /** insert a single row into the table: "building" */
+  insert_building_one?: Maybe<Building>;
   /** update data of the table: "floor" */
   update_floor?: Maybe<Floor_Mutation_Response>;
   /** update single row of the table: "floor" */
@@ -350,6 +368,18 @@ export type Mutation_Root = {
   update_room_light?: Maybe<Room_Light_Mutation_Response>;
   /** update single row of the table: "room_light" */
   update_room_light_by_pk?: Maybe<Room_Light>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_BuildingArgs = {
+  objects: Array<Building_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Building_OneArgs = {
+  object: Building_Insert_Input;
 };
 
 
@@ -867,6 +897,13 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
+export type CreateBuildingMutationVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type CreateBuildingMutation = { __typename?: 'mutation_root', insert_building?: { __typename?: 'building_mutation_response', returning: Array<{ __typename?: 'building', id: any }> } | null | undefined };
+
 export type GetBuildingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -894,6 +931,24 @@ export type UpdateFloorColorMutationVariables = Exact<{
 export type UpdateFloorColorMutation = { __typename?: 'mutation_root', update_floor_by_pk?: { __typename?: 'floor', color?: string | null | undefined } | null | undefined };
 
 
+export const CreateBuildingDocument = `
+    mutation CreateBuilding($slug: String) {
+  insert_building(objects: {slug: $slug}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+export const useCreateBuildingMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<CreateBuildingMutation, TError, CreateBuildingMutationVariables, TContext>) =>
+    useMutation<CreateBuildingMutation, TError, CreateBuildingMutationVariables, TContext>(
+      'CreateBuilding',
+      (variables?: CreateBuildingMutationVariables) => fetcher<CreateBuildingMutation, CreateBuildingMutationVariables>(CreateBuildingDocument, variables)(),
+      options
+    );
 export const GetBuildingDocument = `
     query GetBuilding {
   building {

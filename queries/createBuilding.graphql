@@ -1,0 +1,7 @@
+mutation CreateBuilding($slug: String) {
+  insert_building(objects: { slug: $slug }) {
+    returning {
+      id
+    }
+  }
+}
