@@ -10,7 +10,7 @@ services:
     fromService:
       name: hasura
       type: web
-      property: HASURA_GRAPHQL_ENDPOINT
+      envVarKey: HASURA_GRAPHQL_ENDPOINT
   - key: NODE_ENV
     value: production
 - type: web
